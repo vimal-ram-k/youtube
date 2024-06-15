@@ -14,6 +14,7 @@ import user_light from "../assets/navbar/user-profile-light.png";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store/store";
+import Searchbar from "./searchbar";
 
 function Navigationbar() {
   const theme = useSelector((state: RootState) => {
@@ -88,7 +89,7 @@ function Navigationbar() {
           </sup>
         </div>
       </div>
-
+      <Searchbar />
       <div>
         <ul className=" d-flex align-items-center p-0 m-0 column-gap-4">
           {menu_list.map((item, index) => {
@@ -98,7 +99,11 @@ function Navigationbar() {
                 className={
                   item.name === "notification"
                     ? "position-relative list-unstyled"
-                    : "list-unstyled"
+                    : "list-unstyled" && item.name === "search"
+                    ? "d-md-none list-unstyled"
+                    : "d-block list-unstyled" && item.name === "mic"
+                    ? "d-md-none list-unstyled"
+                    : "d-block list-unstyled"
                 }
               >
                 <img
