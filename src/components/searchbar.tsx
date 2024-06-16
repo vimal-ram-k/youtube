@@ -3,11 +3,19 @@ import search_dark from "../assets/navbar/search_dark.svg";
 import search_light from "../assets/navbar/search_light.svg";
 import mic_dark from "../assets/navbar/mic-dark.png";
 import mic_light from "../assets/navbar/mic-light.png";
+import left_arrow_dark from "../assets/sidebar/left-arrow-dark.svg";
+import left_arrow_light from "../assets/sidebar/left-arrow-light.svg";
 
 import { RootState } from "../redux/store/store";
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
-function Searchbar() {
+type Props = {
+  display: "d-flex" | "d-none";
+  width: "45dvw" | "80dvw";
+  callback?: () => void;
+};
+
+function Searchbar(props: Props) {
   const searchiconRef = useRef<HTMLImageElement | null>(null);
   const inpuRef = useRef<HTMLInputElement | null>(null);
   const Theme = useSelector((state: RootState) => {
@@ -41,9 +49,12 @@ function Searchbar() {
 
   useEffect(() => {
     const searchbar = document.getElementById("searchbar-outline");
+    const searchbarAutoHide = document.getElementById("search-bar-auto-hide");
 
     searchbar?.addEventListener("click", showSearchIcon);
     searchbar?.addEventListener("focusout", hideSearchIcon);
+
+    window.innerWidth;
 
     return () => {
       searchbar?.removeEventListener("focusin", showSearchIcon);
@@ -53,9 +64,18 @@ function Searchbar() {
 
   return (
     <div
-      className=" d-md-flex d-none justify-content-between "
-      style={{ width: "45dvw" }}
+      className={`d-md-flex ${props.display}  justify-content-lg-between justify-content-between `}
+      style={{ width: props.width, margin: "10px auto" }}
+      id="search-bar-auto-hide"
     >
+      <img
+        className=" d-lg-none"
+        onClick={props.callback}
+        style={{ transform: "translateX(-30px)" }}
+        src={Theme === "bg-black" ? left_arrow_light : left_arrow_dark}
+        width={20}
+        alt=""
+      />
       <div
         className=" d-flex align-items-center px-3 py-1  w-100"
         id="searchbar-outline"
@@ -118,4 +138,4 @@ function Searchbar() {
   );
 }
 
-export default Searchbar;
+export default memo(Searchbar);

@@ -6,6 +6,8 @@ import ThemeProvider from "./util/windows/theme";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store/store";
 import Enablehistory from "./components/enablehistory";
+import Pagerouter from "./components/pagerouter";
+
 function App() {
   ThemeProvider();
   const Context = useSelector((state: RootState) => {
@@ -17,6 +19,7 @@ function App() {
       style={{ width: "100dvw", height: "100dvh" }}
     >
       <Navigationbar />
+      <Pagerouter />
       {!Context.HistoryState.history && <Enablehistory />}
     </div>
   );
