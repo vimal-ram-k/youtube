@@ -9,6 +9,7 @@ import { useEffect, useRef } from "react";
 
 function Searchbar() {
   const searchiconRef = useRef<HTMLImageElement | null>(null);
+  const inpuRef = useRef<HTMLInputElement | null>(null);
   const Theme = useSelector((state: RootState) => {
     return state.ThemeContext.theme;
   });
@@ -17,6 +18,7 @@ function Searchbar() {
     if (searchiconRef.current) {
       searchiconRef.current.classList.remove("d-none");
       searchiconRef.current.classList.add("d-block");
+      inpuRef.current?.select();
     }
 
     const search_out_line = document.getElementById("searchbar-outline");
@@ -38,11 +40,17 @@ function Searchbar() {
   };
 
   useEffect(() => {
-    const searchbar = document.getElementById("searchbar");
+    const searchbar = document.getElementById("searchbar-outline");
 
-    searchbar?.addEventListener("focusin", showSearchIcon);
+    searchbar?.addEventListener("click", showSearchIcon);
     searchbar?.addEventListener("focusout", hideSearchIcon);
+
+    return () => {
+      searchbar?.removeEventListener("focusin", showSearchIcon);
+      searchbar?.removeEventListener("focusout", hideSearchIcon);
+    };
   });
+
   return (
     <div
       className=" d-md-flex d-none justify-content-between "
@@ -65,6 +73,7 @@ function Searchbar() {
         />
         <input
           type="text"
+          ref={inpuRef}
           placeholder="Search"
           id="searchbar"
           className=" px-1 bg-transparent border-0"
@@ -75,8 +84,13 @@ function Searchbar() {
         />
       </div>
       <div
-        className="bg-secondary d-flex justify-content-center align-items-center "
-        style={{ borderRadius: "0px 20px 20px 0px", width: "60px" }}
+        className="d-flex justify-content-center align-items-center "
+        style={{
+          border: "0.5px solid gray",
+          borderRadius: "0px 20px 20px 0px",
+          width: "70px",
+          backgroundColor: Theme === "bg-black" ? "#383838" : "	#F0F0F0",
+        }}
       >
         <img
           src={Theme === "bg-black" ? search_light : search_dark}
@@ -86,16 +100,17 @@ function Searchbar() {
       </div>
 
       <div
-        className=" d-flex justify-content-center align-items-center bg-secondary"
+        className=" d-flex justify-content-center align-items-center"
         style={{
-          width: "50px",
+          width: "45px",
           borderRadius: "50%",
           margin: "0px 0px 0px 20px",
+          backgroundColor: Theme === "bg-black" ? "#383838" : "	#F0F0F0",
         }}
       >
         <img
           src={Theme === "bg-black" ? mic_light : mic_dark}
-          width={25}
+          width={20}
           alt=""
         />
       </div>

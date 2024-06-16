@@ -10,10 +10,10 @@ function Enablehistory() {
     <div
       className={Theme === "bg-black" ? "text-white" : "text-black"}
       style={{
-        width: "400px",
+        width: "450px",
         margin: "40px auto",
-        padding: " 30px 5px",
-        backgroundColor: `${Theme === "bg-black" ? "#2F2F2F" : "white"}`,
+        padding: " 20px 10px",
+        backgroundColor: `${Theme === "bg-black" ? "#282828" : "white"}`,
         borderRadius: "10px",
         textAlign: "center",
         border: "0.1px solid gray",
@@ -22,7 +22,7 @@ function Enablehistory() {
       <h1 className=" my-2 fw-bold" style={{ fontSize: "1.2rem" }}>
         Your watch history is off
       </h1>
-      <p className=" my-3" style={{ fontSize: "0.8rem" }}>
+      <p className=" my-3 px-4" style={{ fontSize: "0.85rem", color: "gray" }}>
         You can change your setting at any time to get the latest videos
         tailored to you. <Link to="/">Learn more</Link>
       </p>
@@ -30,7 +30,8 @@ function Enablehistory() {
         className=" rounded-5 border-0 py-1 fw-medium"
         style={{
           width: "90%",
-          backgroundColor: `${Theme === "bg-black" ? "gray" : "#D3D3D3"}`,
+          backgroundColor: `${Theme === "bg-black" ? "#383838" : "#F0F0F0"}`,
+          color: Theme === "bg-black" ? "white" : "black",
         }}
       >
         Update setting

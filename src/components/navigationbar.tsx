@@ -64,12 +64,12 @@ function Navigationbar() {
             alt=""
           />
         </div>
-        <div className=" mx-4 d-flex align-items-center position-relative">
-          <img src={youtube} width={40} alt="" />
+        <div className=" ms-4 d-flex align-items-center position-relative">
+          <img src={youtube} width={35} alt="" />
           <h1
             className="m-0 p-0"
             style={{
-              fontSize: "1.3rem",
+              fontSize: "1rem",
               color: theme === "bg-black" ? "#ffff" : "black",
             }}
           >
@@ -91,7 +91,7 @@ function Navigationbar() {
       </div>
       <Searchbar />
       <div>
-        <ul className=" d-flex align-items-center p-0 m-0 column-gap-4">
+        <ul className=" d-flex align-items-center p-0 m-0 column-gap-4 me-3">
           {menu_list.map((item, index) => {
             return (
               <li
@@ -108,7 +108,7 @@ function Navigationbar() {
               >
                 <img
                   src={theme === "bg-black" ? item.lighticon : item.darkicon}
-                  width={25}
+                  width={20}
                   alt=""
                 />
                 {item.name === "notification" && (
@@ -117,10 +117,10 @@ function Navigationbar() {
                     style={{
                       top: "-5px",
                       right: "-5px",
-                      fontSize: "0.9rem",
+                      fontSize: "0.75rem",
                       color: "white",
-                      width: "20px",
-                      height: "20px",
+                      width: "15px",
+                      height: "15px",
                       backgroundColor: "red",
                     }}
                   >
