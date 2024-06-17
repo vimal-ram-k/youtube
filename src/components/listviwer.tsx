@@ -31,7 +31,7 @@ const Listviwer = (props: listType) => {
           alt=""
         />
         <h1
-          className="m-0 fw-light "
+          className="m-0 fw-light d-none d-xl-block "
           style={{
             fontSize: "0.8rem",
           }}

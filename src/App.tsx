@@ -5,8 +5,10 @@ import ThemeProvider from "./util/windows/theme";
 
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store/store";
-import Enablehistory from "./components/enablehistory";
+import Banner from "./components/banner";
 import Pagerouter from "./components/pagerouter";
+import VideoList from "./components/videolist";
+import { Outlet } from "react-router-dom";
 
 function App() {
   ThemeProvider();
@@ -16,11 +18,13 @@ function App() {
   return (
     <div
       className={`${Context.ThemeContext.theme}`}
-      style={{ width: "100dvw", height: "100dvh" }}
+      style={{ width: "100%", height: "100%" }}
     >
       <Navigationbar />
-      <Pagerouter />
-      {!Context.HistoryState.history && <Enablehistory />}
+      <div className=" d-flex">
+        <Pagerouter />
+        <Outlet />
+      </div>
     </div>
   );
 }

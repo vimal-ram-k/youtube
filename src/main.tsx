@@ -1,11 +1,12 @@
 import React from "react";
-import ReactDOM, { Root } from "react-dom/client";
+import ReactDOM,  from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./redux/store/store.ts";
-import { Provider, useSelector } from "react-redux";
-import { RootState } from "../src/redux/store/store.ts";
+import { Provider } from "react-redux";
+import VideoList from "./components/videolist.tsx";
+import Banner from "./components/banner.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +14,15 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/shorts",
-        element: <App />,
+        path: "/",
+        element: <Banner />,
       },
       {
         path: "/feed/subcriptions",
-        element: <App />,
+        element: <VideoList />,
+      },
+      {
+        path: "/shorts",
       },
     ],
   },

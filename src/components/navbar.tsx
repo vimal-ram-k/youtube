@@ -15,6 +15,8 @@ import notification_light from "../assets/navbar/notification-light.png";
 import notification_dark from "../assets/navbar/notification-dark.png";
 import user_dark from "../assets/navbar/user-profile-dark.png";
 import user_light from "../assets/navbar/user-profile-light.png";
+
+import "../style/navbar.css";
 function Navbar() {
   const theme = useSelector((state: RootState) => {
     return state.ThemeContext.theme;
@@ -49,7 +51,7 @@ function Navbar() {
   return (
     <div>
       <div
-        className=" d-flex align-items-center justify-content-between container-fluid px-lg-4 px-2"
+        className="d-flex align-items-center justify-content-between container-fluid px-lg-4 px-2"
         id="navigationbar"
         style={{
           height: "60px",
@@ -97,15 +99,13 @@ function Navbar() {
                 <li
                   key={item.name + index}
                   id={item.name}
-                  className={
-                    item.name === "notification"
-                      ? "position-relative list-unstyled"
-                      : "list-unstyled" && item.name === "search"
-                      ? "d-md-none list-unstyled"
-                      : "d-block list-unstyled" && item.name === "mic"
-                      ? "d-md-none list-unstyled"
-                      : "d-block list-unstyled"
-                  }
+                  className={`list-unstyled nav-list ${
+                    item.name === "notification" ? "position-relative" : ""
+                  } ${
+                    item.name === "search" || item.name === "mic"
+                      ? "d-md-none"
+                      : "d-block"
+                  }`}
                 >
                   <img
                     src={theme === "bg-black" ? item.lighticon : item.darkicon}

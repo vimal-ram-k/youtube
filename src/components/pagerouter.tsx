@@ -21,7 +21,6 @@ import arrow_light from "../assets/sidebar/right-arrow-light.png";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store/store";
-import { Link } from "react-router-dom";
 import Listviwer from "./listviwer";
 
 function Pagerouter() {
@@ -80,7 +79,16 @@ function Pagerouter() {
     },
   ];
   return (
-    <div className="my-3 mx-4 d-none d-lg-block">
+    <div
+      className="my-3 mx-4 d-none d-md-block col-1 col-lg-2 position-sticky"
+      style={{
+        color: theme === "bg-black" ? "white" : "black",
+        top: "100px",
+        height: "100vh",
+        maxHeight: "calc(100vh - 100px)",
+      }}
+      id="scroller"
+    >
       <ul className="p-0">
         {sidebar_list.map((item, index) => {
           return (
@@ -92,7 +100,7 @@ function Pagerouter() {
           );
         })}
       </ul>
-      <div className=" d-flex align-items-center column-gap-3 my-3">
+      <div className=" d-none d-lg-flex align-items-center column-gap-3 my-3 ">
         <h1
           className=" m-0 fw-medium"
           style={{
@@ -108,7 +116,7 @@ function Pagerouter() {
         />
       </div>
       <div>
-        <ul className="p-0">
+        <ul className="p-0 d-none d-lg-block">
           {sidebar_list2.map((item, index) => {
             return (
               <Listviwer

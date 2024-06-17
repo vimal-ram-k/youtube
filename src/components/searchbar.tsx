@@ -3,15 +3,15 @@ import search_dark from "../assets/navbar/search_dark.svg";
 import search_light from "../assets/navbar/search_light.svg";
 import mic_dark from "../assets/navbar/mic-dark.png";
 import mic_light from "../assets/navbar/mic-light.png";
-import left_arrow_dark from "../assets/sidebar/left-arrow-dark.svg";
-import left_arrow_light from "../assets/sidebar/left-arrow-light.svg";
+import left_arrow_dark from "../assets/sidebar/left-arrow-dark.png";
+import left_arrow_light from "../assets/sidebar/left-arrow-light.png";
 
 import { RootState } from "../redux/store/store";
 import { memo, useEffect, useRef } from "react";
 
 type Props = {
   display: "d-flex" | "d-none";
-  width: "45dvw" | "80dvw";
+  width: "45dvw" | "85dvw";
   callback?: () => void;
 };
 
@@ -49,7 +49,6 @@ function Searchbar(props: Props) {
 
   useEffect(() => {
     const searchbar = document.getElementById("searchbar-outline");
-    const searchbarAutoHide = document.getElementById("search-bar-auto-hide");
 
     searchbar?.addEventListener("click", showSearchIcon);
     searchbar?.addEventListener("focusout", hideSearchIcon);
@@ -64,16 +63,15 @@ function Searchbar(props: Props) {
 
   return (
     <div
-      className={`d-md-flex ${props.display}  justify-content-lg-between justify-content-between `}
-      style={{ width: props.width, margin: "10px auto" }}
-      id="search-bar-auto-hide"
+      className={`d-md-flex ${props.display} justify-content-lg-between justify-content-between pt-3 pt-md-0`}
+      style={{ width: props.width, margin: "0px auto" }}
     >
       <img
-        className=" d-lg-none"
+        className=" d-md-none"
         onClick={props.callback}
-        style={{ transform: "translateX(-30px)" }}
+        style={{ transform: "translateX(-20px)" }}
         src={Theme === "bg-black" ? left_arrow_light : left_arrow_dark}
-        width={20}
+        width={30}
         alt=""
       />
       <div
@@ -93,6 +91,8 @@ function Searchbar(props: Props) {
         />
         <input
           type="text"
+          autoFocus
+          aria-describedby="Enter your search keyword"
           ref={inpuRef}
           placeholder="Search"
           id="searchbar"
